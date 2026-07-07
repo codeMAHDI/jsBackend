@@ -28,8 +28,7 @@
 
 
 //-----Practice task-----
-
-//Object(Map)
+// //Object(Map)
 // const orderDetails={
 //     orderId: 101,
 //     customerName: "Alice",
@@ -42,11 +41,10 @@
 // console.log("Order Status:", status);
 
 //Array(list)
-
-const cartItems=[
-    { id: 1, name: "Laptop", price: 80000, quantity: 1 },
-    { id: 2, name: "Mouse", price: 1500, quantity: 2 },
-    { id: 3, name: "Keyboard", price: 3500, quantity: 1 }
-]
-cartItems.push({ id: 4, name: "Monitor", price: 12000, quantity: 1 });
-console.log("Full array of cart items:", cartItems);
+// const cartItems=[
+//     { id: 1, name: "Laptop", price: 80000, quantity: 1 },
+//     { id: 2, name: "Mouse", price: 1500, quantity: 2 },
+//     { id: 3, name: "Keyboard", price: 3500, quantity: 1 }
+// ]
+// cartItems.push({ id: 4, name: "Monitor", price: 12000, quantity: 1 });
+// console.log("Full array of cart items:", cartItems);
