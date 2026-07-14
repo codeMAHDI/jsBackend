@@ -1,0 +1,6 @@
+{
+  "name": "jsBackend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "lesson8/main.js"
+}
