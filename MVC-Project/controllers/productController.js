@@ -20,3 +20,24 @@ export const getProducts = (req, res) => {
     });
 
 };
+
+export const UpdateProduct = (req, res) => {
+    const { id } = req.params;
+    const { name, price } = req.body;
+    console.log(`Updating product with ID: ${id} to Name: ${name}, Price: ${price}`);
+    res.json({
+        success: true,
+        message: `Product with ID: ${id} updated successfully!`,
+        updatedData: { id, name, price }
+    });
+};
+
+export const DeleteProduct = (req, res) => {
+    const { id } = req.params;
+    console.log(`Deleting product with ID: ${id}`);
+    req.json({
+        success: true,
+        message: `Product with ID: ${id} has been deleted successfully!`
+    });
+
+};
