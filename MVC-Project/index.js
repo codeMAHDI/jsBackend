@@ -6,7 +6,7 @@ import productRouter from "./routes/productRoutes.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use("/api", productRouter);
+app.use("/api/v1", productRouter);
 const PORT = process.env.PORT || 8000;
 
 
