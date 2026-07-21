@@ -35,9 +35,29 @@ export const UpdateProduct = (req, res) => {
 export const DeleteProduct = (req, res) => {
     const { id } = req.params;
     console.log(`Deleting product with ID: ${id}`);
-    req.json({
+    res.json({
         success: true,
         message: `Product with ID: ${id} has been deleted successfully!`
     });
 
+};
+
+
+export const getProductDetails = (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        if (id === "0") {
+            const error = new Error("Product with ID 0 is invalid!");
+            error.statusCode = 400;
+            throw error;
+        }
+        res.json({
+            success: true,
+            message: `Product Details fetched for ID: ${id}`
+        })
+
+    } catch (error) {
+        next(error);
+    }
 };
