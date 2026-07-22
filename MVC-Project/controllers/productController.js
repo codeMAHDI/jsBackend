@@ -1,25 +1,28 @@
-export const addProduct = (req, res) => {
-    const { name, price } = req.body;
-    console.log("data received", name, price);
-    res.json({
-        message: "Product added successfully!", data: { name, price }
-    });
-};
+import Product from "../models/productModel.js";
 
-export const getProducts = (req, res) => {
-    const productList = [
-        { id: 1, name: "Laptop", price: 80000 },
-        { id: 2, name: "Mouse", price: 1500 },
-        { id: 3, name: "Keyboard", price: 3500 }
-    ];
-    console.log("Fetching products list...");
-    res.json({
-        success: true,
-        count: productList.length,
-        data: productList
-    });
 
-};
+// export const addProduct = (req, res) => {
+//     const { name, price } = req.body;
+//     console.log("data received", name, price);
+//     res.json({
+//         message: "Product added successfully!", data: { name, price }
+//     });
+// };
+
+// export const getProducts = (req, res) => {
+//     const productList = [
+//         { id: 1, name: "Laptop", price: 80000 },
+//         { id: 2, name: "Mouse", price: 1500 },
+//         { id: 3, name: "Keyboard", price: 3500 }
+//     ];
+//     console.log("Fetching products list...");
+//     res.json({
+//         success: true,
+//         count: productList.length,
+//         data: productList
+//     });
+
+// };
 
 export const UpdateProduct = (req, res) => {
     const { id } = req.params;
@@ -83,4 +86,46 @@ export const testApi = (req, res) => {
     });
 
 
+};
+
+
+// Database CRUD (Create & Read)
+
+//Create product 
+export const addProduct = async (req, res, next) => {
+    try {
+        const { name, price, category, inStock } = req.body;
+
+        //Save data to database
+        const newProduct = await Product.create({
+            name,
+            price,
+            category,
+            inStock
+        });
+        res.status(201).json({
+            success: true,
+            message: "Product created successfully",
+            data: newProduct
+        });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Read all products
+
+export const getProducts = async (req, res, next) => {
+    try {
+        const products = await Product.find();
+        res.status(200).json({
+            success: true,
+            count: products.length,
+            data: products
+        });
+    }
+    catch (error) {
+        next(error);
+    }
 };
