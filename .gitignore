@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+*.env
+MVC-Project/.env
+
+# Logs
+package-lock.json
+*.log
