@@ -4,5 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "npm run dev --prefix MVC-Project"
+  },
+  "dependencies": {
+    "mongoose": "^8.8.4"
   }
 }

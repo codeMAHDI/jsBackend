@@ -61,3 +61,26 @@ export const getProductDetails = (req, res, next) => {
         next(error);
     }
 };
+
+
+// Complete API Testing
+export const testApi = (req, res) => {
+    const authHeader = req.headers["authorization"];
+    const { search, limit } = req.query;
+    const { id } = req.params;
+    const { category } = req.body;
+
+    res.json({
+        success: true,
+        message: "API Testing Successful!",
+        receivedData: {
+            headerToken: authHeader || "No Token Provided",
+            pathId: id,
+            querySearch: search || "No Search Query",
+            queryLimit: limit || "No Limit Set",
+            bodyCategory: category || "No Category in Body"
+        }
+    });
+
+
+};

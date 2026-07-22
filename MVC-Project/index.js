@@ -3,8 +3,10 @@ import dotenv from "dotenv";
 import productRouter from "./routes/productRoutes.js";
 import loggerMiddleware from "./middlewares/logger.js";
 import errorHandler from "./middlewares/errorHandler.js";
+import connectDB from "./config/db.js";
 
 dotenv.config();
+connectDB();
 const app = express();
 app.use(express.json());
 app.use(loggerMiddleware);
