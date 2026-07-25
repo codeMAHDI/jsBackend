@@ -96,7 +96,7 @@ export const addProduct = async (req, res, next) => {
     try {
         const { name, price, category, inStock } = req.body;
 
-        //Save data to database
+        //Save/insert data to database
         const newProduct = await Product.create({
             name,
             price,
@@ -126,6 +126,60 @@ export const getProducts = async (req, res, next) => {
         });
     }
     catch (error) {
+        next(error);
+    }
+};
+
+// Database CRUD (Update & Delete)
+
+// Update
+export const UpdateProducts = async (req, res, next)=>{
+    try{
+        const{id}= req.params;
+        const upadteData= req.body;
+        
+        const upadtedProduct= await Product.findByIdAndUpdate(id, updatedData,{
+            new: true,
+            runValidators: true
+        });
+        if(!upadtedProduct){
+            return res.status(404).json({
+                success: false,
+                message: "ID not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Product Updated Successfully!",
+            data: upadtedProduct
+        });
+
+    }catch(error){
+        next(error);
+    }
+};
+
+// Delete
+export const DeleteProducts = async (req, res, next)=>{
+    try{
+        const {id}= req.params;
+
+        const deletedProduct=  await Product.findByIdAndDelete(id);
+        if (!deletedProduct) {
+            return res.status(404).json({
+                success: false,
+                message: "ID not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Product Deleted Successfully!",
+        });
+
+
+    }catch(error){
         next(error);
     }
 };
